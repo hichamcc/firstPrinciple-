@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Principles Planning - Urban Planning & Landscape Architecture</title>
+    <meta name="description" content="1st Principles Planning offers urban planning and landscape architecture consulting with 70+ years of collective experience. Development permits, subdivision planning, community engagement, and landscape design.">
+    <meta property="og:title" content="1st Principles Planning - Urban Planning & Landscape Architecture">
+    <meta property="og:description" content="Urban planning and landscape architecture consulting with 70+ years of collective experience.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=space-grotesk:400,500,600,700|inter:400,500,600,700&display=swap" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fp: {
+                            orange: '#F0912C',
+                            amber: '#F2A743',
+                            gold: '#F7CA91',
+                            charcoal: '#5A5A5A',
+                            dark: '#1A1A1A',
+                            mid: '#2D2D2D',
+                            light: '#FDF8F3',
+                            cream: '#FAFAFA',
+                            slate: '#F5F5F5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        body { font-family: 'Inter', sans-serif; color: #333; background: #fff; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Scroll reveal with stagger support */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Glassmorphic nav */
+        .nav-scrolled {
+            background: rgba(255,255,255,0.85) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #F0912C 0%, #F2A743 50%, #F7CA91 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Service card modern */
+        .service-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #F0912C, #F2A743);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        /* Project card overlay */
+        .project-overlay {
+            background: linear-gradient(0deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.4) 50%, transparent 100%);
+        }
+
+        /* Animated counter */
+        .stat-number {
+            background: linear-gradient(135deg, #F0912C, #F2A743);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Form focus */
+        .form-input { transition: all 0.3s ease; }
+        .form-input:focus {
+            border-color: #F0912C;
+            box-shadow: 0 0 0 4px rgba(240,145,44,0.1);
+            outline: none;
+        }
+
+        /* Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track { animation: marquee 30s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        /* Mobile menu transition */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #mobile-menu.open { max-height: 400px; }
+
+        /* Blob animation */
+        @keyframes blob {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        .blob { animation: blob 8s ease-in-out infinite; }
+
+        /* Why card */
+        .why-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .why-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(240,145,44,0.08);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- ==================== SECTION 1: UTILITY BAR ==================== -->
+    <div class="bg-fp-dark text-white/80 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
+            <div class="flex items-center gap-5">
+                <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '4035551234') }}" class="flex items-center gap-1.5 hover:text-fp-orange transition-colors duration-200">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    <span class="font-medium tracking-wide">{{ $settings['phone'] ?? '' }}</span>
+                </a>
+                <span class="hidden sm:block w-px h-3 bg-white/20"></span>
+                <a href="mailto:{{ $settings['email'] ?? '' }}" class="hidden sm:flex items-center gap-1.5 hover:text-fp-orange transition-colors duration-200">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    {{ $settings['email'] ?? '' }}
+                </a>
+            </div>
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 text-fp-orange hover:text-fp-amber transition-colors font-semibold tracking-wide uppercase">
+                Get in Touch
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 2: NAVIGATION ==================== -->
+    <nav id="navbar" class="sticky top-0 z-50 bg-white transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex-shrink-0">
+                    <img src="/1st-logo.png" alt="1st Principles Planning" class="h-[5.5rem] w-auto p-2">
+                </a>
+
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#about" class="px-4 py-2 text-fp-charcoal hover:text-fp-dark transition-colors font-medium text-sm rounded-full hover:bg-gray-50">About</a>
+                    <a href="#services" class="px-4 py-2 text-fp-charcoal hover:text-fp-dark transition-colors font-medium text-sm rounded-full hover:bg-gray-50">Services</a>
+                    <a href="#projects" class="px-4 py-2 text-fp-charcoal hover:text-fp-dark transition-colors font-medium text-sm rounded-full hover:bg-gray-50">Projects</a>
+                    <a href="#team" class="px-4 py-2 text-fp-charcoal hover:text-fp-dark transition-colors font-medium text-sm rounded-full hover:bg-gray-50">Team</a>
+                    <div class="w-px h-6 bg-gray-200 mx-2"></div>
+                    <a href="#contact" class="ml-1 bg-fp-dark text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-fp-orange transition-all duration-300">
+                        Start a Project
+                    </a>
+                </div>
+
+                <button id="mobile-toggle" class="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition" aria-label="Toggle menu">
+                    <svg id="menu-open-icon" class="w-5 h-5 text-fp-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="menu-close-icon" class="w-5 h-5 text-fp-dark absolute transition-transform duration-300 scale-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="lg:hidden">
+                <div class="py-4 space-y-1 border-t border-gray-100">
+                    <a href="#about" class="mobile-link block px-4 py-3 text-fp-dark font-medium text-sm rounded-xl hover:bg-fp-slate transition">About</a>
+                    <a href="#services" class="mobile-link block px-4 py-3 text-fp-dark font-medium text-sm rounded-xl hover:bg-fp-slate transition">Services</a>
+                    <a href="#projects" class="mobile-link block px-4 py-3 text-fp-dark font-medium text-sm rounded-xl hover:bg-fp-slate transition">Projects</a>
+                    <a href="#team" class="mobile-link block px-4 py-3 text-fp-dark font-medium text-sm rounded-xl hover:bg-fp-slate transition">Team</a>
+                    <a href="#contact" class="block mt-3 bg-fp-dark text-white text-center px-6 py-3 rounded-xl text-sm font-semibold hover:bg-fp-orange transition-all">Start a Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== SECTION 3: HERO ==================== -->
+    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+        <!-- Background image -->
+        <div class="absolute inset-0">
+            <img src="{{ $heroImage }}" alt="Landscape architecture and urban planning" class="w-full h-full object-cover opacity-95 scale-105">
+        </div>
+        <!-- Gradient overlays -->
+        <div class="absolute inset-0 bg-gradient-to-r from-fp-dark/75 via-fp-dark/45 to-fp-dark/20"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-fp-dark to-transparent"></div>
+
+        <!-- Decorative blob -->
+        <div class="absolute -right-40 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-fp-orange/10 blob blur-3xl hidden lg:block"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-24 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 mb-8">
+                    <span class="w-2 h-2 bg-fp-orange rounded-full animate-pulse"></span>
+                    <span class="text-white/70 text-xs font-medium tracking-wider uppercase">70+ Years Collective Experience</span>
+                </div>
+
+                <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-8 tracking-tight">
+                    {!! nl2br(e($settings['hero_headline'] ?? 'Urban Planning & Landscape Architecture')) !!}
+                </h1>
+
+                <p class="text-lg sm:text-xl text-white/60 leading-relaxed mb-12 max-w-xl">
+                    {{ $settings['hero_subheadline'] ?? '' }}
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="group inline-flex items-center justify-center bg-fp-orange text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-fp-amber transition-all duration-300 shadow-2xl shadow-fp-orange/20 hover:shadow-fp-orange/30 hover:scale-[1.02]">
+                        Contact Us
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#projects" class="inline-flex items-center justify-center border border-white/20 text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-white/10 hover:border-white/30 transition-all duration-300">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: ABOUT / WHO WE ARE ==================== -->
+    <section id="about" class="py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-5 gap-16 items-center">
+                <div class="lg:col-span-3 reveal">
+                    <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">{{ $settings['about_badge'] ?? 'Who We Are' }}</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fp-dark mb-8 leading-tight tracking-tight">
+                        {!! nl2br(e($settings['about_heading'] ?? 'Planning from first principles')) !!}
+                    </h2>
+                    <div class="space-y-5 text-fp-charcoal leading-relaxed">
+                        @foreach([1,2,3] as $i)
+                            @if(!empty($settings["about_text_$i"]))
+                                <p>{{ $settings["about_text_$i"] }}</p>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="mt-10 flex flex-wrap gap-3">
+                        <span class="inline-flex items-center gap-2 bg-fp-slate rounded-full px-4 py-2 text-sm font-medium text-fp-dark">
+                            <svg class="w-4 h-4 text-fp-orange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Holistic Approach
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-fp-slate rounded-full px-4 py-2 text-sm font-medium text-fp-dark">
+                            <svg class="w-4 h-4 text-fp-orange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Community Consensus
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-fp-slate rounded-full px-4 py-2 text-sm font-medium text-fp-dark">
+                            <svg class="w-4 h-4 text-fp-orange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Public Engagement
+                        </span>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 reveal reveal-delay-2">
+                    <div class="relative">
+                        <div class="aspect-[4/5] rounded-3xl overflow-hidden">
+                            <img src="https://www.ecocentrix.com/wp-content/uploads/2017/06/Oak-View-Drive-Slide-3-1.jpg" alt="Landscape architecture project" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Floating stat card -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-2xl shadow-black/10 border border-gray-100 hidden sm:block">
+                            <div class="font-display text-4xl font-bold gradient-text">70+</div>
+                            <div class="text-sm text-fp-charcoal font-medium mt-1">Years Collective<br>Experience</div>
+                        </div>
+                        <!-- Decorative frame -->
+                        <div class="absolute -top-4 -right-4 w-full h-full border-2 border-fp-orange/20 rounded-3xl -z-10 hidden sm:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 5: SERVICES ==================== -->
+    <section id="services" class="py-24 sm:py-32 bg-fp-slate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16 reveal">
+                <div>
+                    <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">What We Do</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fp-dark tracking-tight">Our Services</h2>
+                </div>
+                <p class="text-fp-charcoal max-w-lg leading-relaxed lg:text-right">
+                    Comprehensive planning and design services from development permits to landscape architecture, tailored to your project.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                @foreach($services as $service)
+                    @php $delay = ($loop->index % 3) + 1; @endphp
+                    <div class="reveal reveal-delay-{{ $delay }} service-card bg-white rounded-2xl p-8 border border-gray-100 {{ $loop->last && $services->count() % 3 === 1 ? 'sm:col-span-2 lg:col-span-1' : '' }}">
+                        <div class="w-12 h-12 bg-gradient-to-br from-fp-orange/10 to-fp-amber/10 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-bold text-fp-dark mb-3">{{ $service->title }}</h3>
+                        <p class="text-fp-charcoal text-sm leading-relaxed">{{ $service->description }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SCROLLING MARQUEE BAR ==================== -->
+    <div class="bg-fp-dark py-5 overflow-hidden">
+        <div class="flex marquee-track whitespace-nowrap">
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Development Permits</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Subdivision Planning</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Land Use Applications</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Area Structure Plans</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Landscape Architecture</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Public Engagement</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Municipal Policy</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Development Permits</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Subdivision Planning</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Land Use Applications</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Area Structure Plans</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Landscape Architecture</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Public Engagement</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+            <span class="mx-8 text-white/30 font-display text-sm tracking-widest uppercase">Municipal Policy</span>
+            <span class="mx-4 text-fp-orange/40">/</span>
+        </div>
+    </div>
+
+    <!-- ==================== SECTION 6: FEATURED PROJECTS ==================== -->
+    <section id="projects" class="py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">Portfolio</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fp-dark tracking-tight mb-4">Featured Projects</h2>
+                <p class="text-fp-charcoal max-w-xl mx-auto leading-relaxed">
+                    A selection demonstrating our breadth across planning, design, and community engagement.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6 reveal">
+                @foreach($projects as $project)
+                    <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer">
+                        @if($project->image_src)
+                            <img src="{{ $project->image_src }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        @else
+                            <div class="w-full h-full bg-gray-200"></div>
+                        @endif
+                        <div class="project-overlay absolute inset-0 flex flex-col justify-end p-8">
+                            <span class="inline-block self-start text-xs font-semibold text-fp-orange bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full mb-3 border border-white/10">{{ $project->category }}</span>
+                            <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2">{{ $project->title }}</h3>
+                            <p class="text-white/60 text-sm leading-relaxed max-w-md">{{ $project->description }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: TEAM ==================== -->
+    <section id="team" class="py-24 sm:py-32 bg-fp-slate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">The Team</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fp-dark tracking-tight mb-4">Our Experts</h2>
+                <p class="text-fp-charcoal max-w-xl mx-auto leading-relaxed">
+                    Experienced urban planners and a landscape architect united by a commitment to better communities.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                @foreach($teamMembers as $member)
+                    <div class="group bg-white rounded-2xl p-8 border border-gray-100 hover:border-fp-orange/20 transition-all duration-500 hover:shadow-xl hover:shadow-fp-orange/5 hover:-translate-y-2">
+                        @if($member->image_src)
+                            <img src="{{ $member->image_src }}" alt="{{ $member->title }}"
+                                class="w-20 h-20 rounded-full object-cover mb-6 ring-2 ring-gray-100 group-hover:ring-fp-orange/30 transition-all duration-500">
+                        @else
+                            <div class="w-16 h-16 bg-gradient-to-br from-fp-dark to-fp-charcoal rounded-2xl flex items-center justify-center mb-6 group-hover:from-fp-orange group-hover:to-fp-amber transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            </div>
+                        @endif
+                        <h3 class="font-display text-lg font-bold text-fp-dark mb-1">{{ $member->title }}</h3>
+                        <p class="text-fp-orange font-semibold text-sm mb-5">{{ $member->years }}</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach($member->skills as $skill)
+                                <span class="text-xs bg-fp-slate text-fp-charcoal px-3 py-1.5 rounded-lg font-medium group-hover:bg-fp-orange/5 transition-colors">{{ $skill }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 8: WHY CHOOSE US ==================== -->
+    <section class="py-24 sm:py-32 bg-fp-dark text-white overflow-hidden relative">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-fp-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-fp-amber/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">Why Us</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">Why Choose<br><span class="gradient-text">1st Principles</span></h2>
+                <p class="text-white/50 max-w-lg mx-auto leading-relaxed">
+                    A genuine commitment to getting the fundamentals right — for our clients, their communities, and the land.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto reveal">
+                @foreach($whyCards as $card)
+                    <div class="why-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                        <div class="w-12 h-12 bg-fp-orange/15 rounded-2xl flex items-center justify-center mb-5">
+                            <svg class="w-6 h-6 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-bold mb-3">{{ $card->title }}</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">{{ $card->description }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: CONTACT FORM ==================== -->
+    <section id="contact" class="py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+                <div class="reveal">
+                    <span class="inline-block text-fp-orange font-semibold text-sm tracking-wider uppercase mb-4">Get in Touch</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fp-dark tracking-tight mb-6">
+                        Start a<br>conversation
+                    </h2>
+                    <p class="text-fp-charcoal leading-relaxed mb-10">
+                        Whether you're in the early stages of a development concept or need support navigating municipal approvals, we'd like to hear from you.
+                    </p>
+
+                    <div class="space-y-6">
+                        <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '') }}" class="flex items-center gap-5 group">
+                            <div class="w-12 h-12 bg-fp-slate rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-fp-orange/10 transition-colors">
+                                <svg class="w-5 h-5 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-fp-charcoal/50 uppercase tracking-wider font-medium mb-0.5">Phone</div>
+                                <span class="text-fp-dark font-semibold group-hover:text-fp-orange transition-colors">{{ $settings['phone'] ?? '' }}</span>
+                            </div>
+                        </a>
+                        <a href="mailto:{{ $settings['email'] ?? '' }}" class="flex items-center gap-5 group">
+                            <div class="w-12 h-12 bg-fp-slate rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-fp-orange/10 transition-colors">
+                                <svg class="w-5 h-5 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-fp-charcoal/50 uppercase tracking-wider font-medium mb-0.5">Email</div>
+                                <span class="text-fp-dark font-semibold group-hover:text-fp-orange transition-colors">{{ $settings['email'] ?? '' }}</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Trust signals -->
+                    <div class="mt-12 pt-10 border-t border-gray-100">
+                        <p class="text-xs text-fp-charcoal/40 uppercase tracking-wider font-medium mb-4">Trusted by municipalities across Alberta</p>
+                        <div class="flex gap-3">
+                            <div class="w-10 h-10 bg-fp-slate rounded-lg"></div>
+                            <div class="w-10 h-10 bg-fp-slate rounded-lg"></div>
+                            <div class="w-10 h-10 bg-fp-slate rounded-lg"></div>
+                            <div class="w-10 h-10 bg-fp-slate rounded-lg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-2">
+                    @if(session('contact_submitted'))
+                        <div class="bg-fp-slate rounded-3xl p-10 sm:p-14 border border-gray-200/50 text-center">
+                            <div class="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6">
+                                <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold text-fp-dark mb-3">Message Sent!</h3>
+                            <p class="text-fp-charcoal text-sm leading-relaxed mb-8 max-w-sm mx-auto">Thank you for reaching out. We will be in touch within one business day.</p>
+                            <a href="#contact" class="px-6 py-3 rounded-full border-2 border-fp-dark text-fp-dark font-medium hover:bg-fp-dark hover:text-white transition-all text-sm">
+                                Send Another Message
+                            </a>
+                        </div>
+                    @else
+                        <form action="{{ route('contact.store') }}" method="POST" class="bg-fp-slate rounded-3xl p-8 sm:p-10 border border-gray-200/50">
+                            @csrf
+                            <h3 class="font-display text-xl font-bold text-fp-dark mb-6">Tell us about your project</h3>
+                            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-fp-dark mb-2">Full Name <span class="text-fp-orange">*</span></label>
+                                    <input type="text" name="name" value="{{ old('name') }}" required class="form-input w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm bg-white transition @error('name') border-red-400 @enderror" placeholder="Your name">
+                                    @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-fp-dark mb-2">Email <span class="text-fp-orange">*</span></label>
+                                    <input type="email" name="email" value="{{ old('email') }}" required class="form-input w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm bg-white transition @error('email') border-red-400 @enderror" placeholder="you@example.com">
+                                    @error('email')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                                </div>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-fp-dark mb-2">Phone <span class="text-fp-orange">*</span></label>
+                                    <input type="tel" name="phone" value="{{ old('phone') }}" required class="form-input w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm bg-white transition @error('phone') border-red-400 @enderror" placeholder="(403) 555-0000">
+                                    @error('phone')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-fp-dark mb-2">Project Type</label>
+                                    <select name="project_type" class="form-input w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm bg-white transition appearance-none">
+                                        <option value="">Select a type...</option>
+                                        <option value="Development Permit" {{ old('project_type') === 'Development Permit' ? 'selected' : '' }}>Development Permit</option>
+                                        <option value="Subdivision Planning" {{ old('project_type') === 'Subdivision Planning' ? 'selected' : '' }}>Subdivision Planning</option>
+                                        <option value="Land Use / Rezoning" {{ old('project_type') === 'Land Use / Rezoning' ? 'selected' : '' }}>Land Use / Rezoning</option>
+                                        <option value="Area Structure Plan" {{ old('project_type') === 'Area Structure Plan' ? 'selected' : '' }}>Area Structure Plan</option>
+                                        <option value="Municipal Policy / Bylaw" {{ old('project_type') === 'Municipal Policy / Bylaw' ? 'selected' : '' }}>Municipal Policy / Bylaw</option>
+                                        <option value="Public Engagement" {{ old('project_type') === 'Public Engagement' ? 'selected' : '' }}>Public Engagement</option>
+                                        <option value="Landscape Architecture" {{ old('project_type') === 'Landscape Architecture' ? 'selected' : '' }}>Landscape Architecture</option>
+                                        <option value="Other" {{ old('project_type') === 'Other' ? 'selected' : '' }}>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-fp-dark mb-2">Project Details <span class="text-fp-orange">*</span></label>
+                                <textarea name="message" required rows="5" class="form-input w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm bg-white transition resize-none @error('message') border-red-400 @enderror" placeholder="Tell us about your project, timeline, and any questions...">{{ old('message') }}</textarea>
+                                @error('message')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            </div>
+                            <button type="submit" class="w-full bg-fp-dark text-white py-4 rounded-xl font-semibold hover:bg-fp-orange transition-all duration-300 text-sm tracking-wide">
+                                Send Message
+                            </button>
+                            <p class="text-xs text-fp-charcoal/40 text-center mt-4">We'll respond within one business day.</p>
+                        </form>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: FOOTER ==================== -->
+    <footer class="bg-fp-dark text-white">
+        <!-- CTA band -->
+        <div class="border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Ready to start your project?</h3>
+                    <p class="text-white/50 mt-2">Let's build something meaningful together.</p>
+                </div>
+                <a href="#contact" class="bg-fp-orange text-white px-8 py-4 rounded-full font-semibold hover:bg-fp-amber transition-all duration-300 flex-shrink-0 hover:scale-105">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <img src="/1st-logo.png" alt="1st Principles Planning" class="h-16 w-auto mb-5 brightness-0 invert opacity-80 p-1">
+                    <p class="text-white/40 text-sm leading-relaxed max-w-xs">
+                        Building better communities through thoughtful, principled urban planning and landscape architecture.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-display font-semibold text-sm uppercase tracking-wider mb-5 text-white/60">Navigate</h4>
+                    <div class="space-y-3">
+                        <a href="#about" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">About Us</a>
+                        <a href="#services" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">Services</a>
+                        <a href="#projects" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">Projects</a>
+                        <a href="#team" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">Our Team</a>
+                        <a href="#contact" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-display font-semibold text-sm uppercase tracking-wider mb-5 text-white/60">Services</h4>
+                    <div class="space-y-3">
+                        <span class="block text-white/40 text-sm">Development Permits</span>
+                        <span class="block text-white/40 text-sm">Subdivision Planning</span>
+                        <span class="block text-white/40 text-sm">Land Use Applications</span>
+                        <span class="block text-white/40 text-sm">Landscape Architecture</span>
+                        <span class="block text-white/40 text-sm">Public Engagement</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-display font-semibold text-sm uppercase tracking-wider mb-5 text-white/60">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '') }}" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">{{ $settings['phone'] ?? '' }}</a>
+                        <a href="mailto:{{ $settings['email'] ?? '' }}" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200 break-all">{{ $settings['email'] ?? '' }}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-white/30 text-xs">&copy; 2026 1st Principles Planning. All rights reserved.</p>
+                <p class="text-white/20 text-xs">This website is for informational purposes only and does not constitute professional advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // Mobile menu toggle with icon swap
+        const toggle = document.getElementById('mobile-toggle');
+        const menu = document.getElementById('mobile-menu');
+        const openIcon = document.getElementById('menu-open-icon');
+        const closeIcon = document.getElementById('menu-close-icon');
+        let menuOpen = false;
+
+        toggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            menu.classList.toggle('open');
+            openIcon.style.transform = menuOpen ? 'scale(0) rotate(90deg)' : 'scale(1) rotate(0)';
+            closeIcon.style.transform = menuOpen ? 'scale(1) rotate(0)' : 'scale(0) rotate(-90deg)';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                menu.classList.remove('open');
+                openIcon.style.transform = 'scale(1) rotate(0)';
+                closeIcon.style.transform = 'scale(0) rotate(-90deg)';
+            });
+        });
+
+        // Glassmorphic nav on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('nav-scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal with stagger
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth anchor scrolling with offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
