@@ -140,7 +140,6 @@
                     description="Displayed and linked as a click-to-call."
                     name="phone"
                     :value="old('phone', $settings['phone'] ?? '')"
-                    required
                     placeholder="(403) 555-1234"
                 />
                 <x-input
@@ -152,6 +151,18 @@
                     required
                     placeholder="info@example.com"
                 />
+            </div>
+            <div class="px-6 pb-6">
+                <label for="hide_phone" class="flex items-start gap-3 cursor-pointer">
+                    <input type="hidden" name="hide_phone" value="0">
+                    <input type="checkbox" id="hide_phone" name="hide_phone" value="1"
+                        @checked(old('hide_phone', $settings['hide_phone'] ?? '0') == '1')
+                        class="mt-0.5 size-5 shrink-0 rounded-md border border-gray-300 dark:border-white/10 accent-(--color-accent)">
+                    <span>
+                        <span class="block text-sm font-medium text-gray-800 dark:text-white">Hide phone number from website</span>
+                        <span class="block text-sm text-gray-500 dark:text-gray-400">Removes the phone number from the header bar, contact section, and footer (e.g. to reduce spam calls). Visitors can still reach you by email and the contact form.</span>
+                    </span>
+                </label>
             </div>
         </div>
 

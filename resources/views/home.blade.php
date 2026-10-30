@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+    $showPhone = ($settings['hide_phone'] ?? '0') !== '1' && filled($settings['phone'] ?? null);
+@endphp
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,11 +148,13 @@
     <div class="bg-fp-dark text-white/80 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
             <div class="flex items-center gap-5">
+                @if($showPhone)
                 <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '4035551234') }}" class="flex items-center gap-1.5 hover:text-fp-orange transition-colors duration-200">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                     <span class="font-medium tracking-wide">{{ $settings['phone'] ?? '' }}</span>
                 </a>
                 <span class="hidden sm:block w-px h-3 bg-white/20"></span>
+                @endif
                 <a href="mailto:{{ $settings['email'] ?? '' }}" class="hidden sm:flex items-center gap-1.5 hover:text-fp-orange transition-colors duration-200">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     {{ $settings['email'] ?? '' }}
@@ -459,6 +464,7 @@
                     </p>
 
                     <div class="space-y-6">
+                        @if($showPhone)
                         <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '') }}" class="flex items-center gap-5 group">
                             <div class="w-12 h-12 bg-fp-slate rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-fp-orange/10 transition-colors">
                                 <svg class="w-5 h-5 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -468,6 +474,7 @@
                                 <span class="text-fp-dark font-semibold group-hover:text-fp-orange transition-colors">{{ $settings['phone'] ?? '' }}</span>
                             </div>
                         </a>
+                        @endif
                         <a href="mailto:{{ $settings['email'] ?? '' }}" class="flex items-center gap-5 group">
                             <div class="w-12 h-12 bg-fp-slate rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-fp-orange/10 transition-colors">
                                 <svg class="w-5 h-5 text-fp-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -604,7 +611,9 @@
                 <div>
                     <h4 class="font-display font-semibold text-sm uppercase tracking-wider mb-5 text-white/60">Contact</h4>
                     <div class="space-y-3">
+                        @if($showPhone)
                         <a href="tel:{{ preg_replace('/[^+\d]/', '', $settings['phone'] ?? '') }}" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200">{{ $settings['phone'] ?? '' }}</a>
+                        @endif
                         <a href="mailto:{{ $settings['email'] ?? '' }}" class="block text-white/40 hover:text-fp-orange text-sm transition-colors duration-200 break-all">{{ $settings['email'] ?? '' }}</a>
                     </div>
                 </div>

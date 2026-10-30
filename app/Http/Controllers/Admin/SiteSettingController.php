@@ -28,7 +28,8 @@ class SiteSettingController extends Controller
             'about_text_1'     => ['required', 'string'],
             'about_text_2'     => ['required', 'string'],
             'about_text_3'     => ['required', 'string'],
-            'phone'            => ['required', 'string', 'max:50'],
+            'phone'            => ['nullable', 'string', 'max:50'],
+            'hide_phone'       => ['boolean'],
             'email'            => ['required', 'email', 'max:255'],
         ]);
 
@@ -43,6 +44,9 @@ class SiteSettingController extends Controller
         }
 
         unset($data['hero_image_file'], $data['hero_image_url']);
+
+        $data['phone'] = $data['phone'] ?? '';
+        $data['hide_phone'] = $request->boolean('hide_phone') ? '1' : '0';
 
         foreach ($data as $key => $value) {
             SiteSetting::set($key, $value);
